@@ -26,7 +26,7 @@ public class CustomerUnit {
 	@OneToOne(mappedBy="PARTNERORGUNIT")
 	private PartnerOrgUnit  partnerOrgUnit;
 	
-	@OneToOne(mappedBy="POSTAL")
+	@OneToOne(mappedBy="POSTAL") 
 	private Postal postal; //Change the type to Postal : Anikta 
 
 	public CustomerUnit() {}
