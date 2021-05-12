@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SDP_POSTALCODE")
-public class PostalCode {
+public class Postal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +20,11 @@ public class PostalCode {
 	@Column(name = "PostalCodeValue")
 	private String postalCodeValue;
 
-	public PostalCode() {
-		super();
-	}
+	
 
-	public PostalCode(Long postalCodeId, String postalCodeValue) {
+	public Postal() {}
+
+	public Postal(Long postalCodeId, String postalCodeValue) {
 		super();
 		this.postalCodeId = postalCodeId;
 		this.postalCodeValue = postalCodeValue;
