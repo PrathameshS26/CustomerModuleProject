@@ -15,6 +15,8 @@ public interface CustomerUnitService {
 	public CustomerUnit updateCustomer(int customerid,CustomerUnit updatecustomer);
 
 	public void deleteCustomer(int customerid);
+	
+	
 
 	// public CustomerUnit validateCustomer(String userName, String password);
 

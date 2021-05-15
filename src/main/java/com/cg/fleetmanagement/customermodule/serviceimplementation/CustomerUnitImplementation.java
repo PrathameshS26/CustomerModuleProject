@@ -42,11 +42,15 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 		public CustomerUnit updateCustomer(int customerid,CustomerUnit updatecustomer) {
 			Optional<CustomerUnit> optional = customerrepository.findById(customerid);
 			CustomerUnit cusbyid = optional.get();
+			System.out.println(cusbyid);
+			System.out.println(cusbyid.getPartnerOrgUnit());
+			System.out.println(cusbyid.getPartnerOrgUnit().getOrgunit());
 			cusbyid.setCustomerFirstName(updatecustomer.getCustomerFirstName());
 			cusbyid.setCustomerLastName(updatecustomer.getCustomerLastName());
-			cusbyid.setCustomerId(updatecustomer.getCustomerId());
-			cusbyid.getPartnerOrgUnit()
-					.setPartnerOrgId(updatecustomer.getPartnerOrgUnit().getPartnerOrgId());
+//			cusbyid.setCustomerId(updatecustomer.getCustomerId());
+			
+//			cusbyid.getPartnerOrgUnit()
+//					.setPartnerOrgId(updatecustomer.getPartnerOrgUnit().getPartnerOrgId());
 			cusbyid.getPartnerOrgUnit()
 					.setSponsorPartnerBusinessManager(updatecustomer.getPartnerOrgUnit().getSponsorPartnerBusinessManager());
 //			cusbyid.getPartnerOrgUnit()
@@ -61,7 +65,7 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 			cusbyid.getPartnerOrgUnit()
 					.getOrgunit()
 					.setPhoneNumber(updatecustomer.getPartnerOrgUnit().getOrgunit().getPhoneNumber());
-			cusbyid.getPostal().setPostalCodeId(updatecustomer.getPostal().getPostalCodeId());
+//			cusbyid.getPostal().setPostalCodeId(updatecustomer.getPostal().getPostalCodeId());
 			cusbyid.getPostal()
 					.setPostalCodeValue(updatecustomer.getPostal().getPostalCodeValue());
 //			cusbyid.getPostal()
@@ -100,6 +104,9 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 		public void deleteCustomer(int customerid) {
 			customerrepository.deleteById(customerid);
 		}
+		
+		
+		
 
 	}
 
