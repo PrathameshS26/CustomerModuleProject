@@ -15,11 +15,11 @@ import javax.persistence.Table;
 public class PartnerOrgUnit {
 
 	@Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PartnerOrgID", length = 10)
 	private int partnerOrgId;
 
-	@Column(name = "BU_Manager", length = 10)
+	@Column(name = "BU_Manager", length = 50,nullable = false)
 	private String sponsorPartnerBusinessManager;
 
 	@Column(name = "IsReselleEnabled")
@@ -28,7 +28,7 @@ public class PartnerOrgUnit {
 	@Column(name = " IsOnCreditHold")
 	private boolean isOnCreditHold;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "OrgID")
 	private OrgUnit orgunit;
 

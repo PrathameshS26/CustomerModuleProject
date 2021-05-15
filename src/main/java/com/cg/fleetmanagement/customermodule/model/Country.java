@@ -14,10 +14,10 @@ import javax.persistence.Table;
 @Table(name = "COUNTRYCODE")
 public class Country {
 	@Id
-	//@GeneratedValue
-	@Column(name = "COUNTRYID")
+	@GeneratedValue
+	@Column(name = "COUNTRYID",length = 20)
 	private int Countryid;
-	@Column(name = "COUNTRYNAME")
+	@Column(name = "COUNTRYNAME",length = 50,nullable = false)
 	private String Countryname;
 
 	public Country() {

@@ -16,21 +16,21 @@ import javax.persistence.Table;
 public class Postal {
 
 	@Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PostalCodeID")
 	private Long postalCodeId;
 
-	@Column(name = "PostalCodeValue")
-	private String postalCodeValue;
+	@Column(name = "PostalCodeValue",length = 6,nullable = false)
+	private int postalCodeValue;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "CityId")
 	private City city;
 
 	public Postal() {
 	}
 
-	public Postal(Long postalCodeId, String postalCodeValue, City city) {
+	public Postal(Long postalCodeId, int postalCodeValue, City city) {
 		super();
 		this.postalCodeId = postalCodeId;
 		this.postalCodeValue = postalCodeValue;
@@ -45,11 +45,11 @@ public class Postal {
 		this.postalCodeId = postalCodeId;
 	}
 
-	public String getPostalCodeValue() {
+	public int getPostalCodeValue() {
 		return postalCodeValue;
 	}
 
-	public void setPostalCodeValue(String postalCodeValue) {
+	public void setPostalCodeValue(int postalCodeValue) {
 		this.postalCodeValue = postalCodeValue;
 	}
 

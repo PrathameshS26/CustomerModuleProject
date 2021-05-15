@@ -12,17 +12,17 @@ import javax.persistence.Table;
 public class OrgUnit {
 
 	@Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "OrgID", length = 20)
 	private int OrgId;
 
-	@Column(name = "OrgName", length = 50)
+	@Column(name = "OrgName", length = 50,nullable = false)
 	private String orgName;
 
-	@Column(name = "OrgNumber", length = 20)
+	@Column(name = "OrgNumber", length = 10,nullable = false)
 	private long phoneNumber;
 
-	@Column(name = "OrgFax", length = 20)
+	@Column(name = "OrgFax", length = 20,nullable = false)
 	private long faxNumber;
 
 	public OrgUnit() {

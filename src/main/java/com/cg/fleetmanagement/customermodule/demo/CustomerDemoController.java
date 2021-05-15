@@ -1,3 +1,4 @@
+package com.cg.fleetmanagement.customermodule.demo;
 //package com.cg.fleetmanagement.customermodule.controller;
 //
 //import org.springframework.beans.factory.annotation.Autowired;

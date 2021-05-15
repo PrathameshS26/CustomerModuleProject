@@ -14,14 +14,15 @@ import javax.persistence.Table;
 @Table(name = "CITYCODE")
 public class City {
 	@Id
-	@Column(name = "CITYID")
+	@GeneratedValue
+	@Column(name = "CITYID",length = 20)
 	private int cityid;
-	@Column(name = "CITYNAME")
+	@Column(name = "CITYNAME",length = 50,nullable = false)
 	private String cityname;
-	@Column(name = "CITYCOMMLANG")
+	@Column(name = "CITYCOMMLANG",length = 50,nullable = false)
 	private String citycommlang;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "regionid")
 	private Region regionId;
 

@@ -16,10 +16,10 @@ import javax.persistence.Table;
 @Table(name = "REGIONCODE")
 public class Region {
 	@Id
-	//@GeneratedValue
+	@GeneratedValue
 	@Column(name = "REGIONID")
 	private int Regionid;
-	@Column(name = "REGIONNAME")
+	@Column(name = "REGIONNAME",length = 50)
 	private String Regionname;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

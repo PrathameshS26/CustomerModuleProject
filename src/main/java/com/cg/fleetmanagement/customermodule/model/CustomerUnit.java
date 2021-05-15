@@ -15,21 +15,21 @@ import javax.persistence.Table;
 public class CustomerUnit {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CUSTOMER_ID", length = 10)
 	private int customerId;
 
-	@Column(name = "CUSTOMER_FNAME", length = 50)
+	@Column(name = "CUSTOMER_FNAME", length = 50,nullable = false)
 	private String customerFirstName;
 
-	@Column(name = "CUSTOMER_LNAME", length = 50)
+	@Column(name = "CUSTOMER_LNAME", length = 50,nullable = false)
 	private String customerLastName;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "partnerorgid")
 	private PartnerOrgUnit partnerOrgUnit;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "postalid")
 	private Postal postal;
 
