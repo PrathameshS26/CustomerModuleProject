@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.cg.fleetmanagement.customermodule.exception.CustomerIdNotFoundException;
+import com.cg.fleetmanagement.customermodule.exception.ObjectMissingException;
 import com.cg.fleetmanagement.customermodule.model.City;
 import com.cg.fleetmanagement.customermodule.model.Country;
 import com.cg.fleetmanagement.customermodule.model.CustomerUnit;
@@ -53,35 +55,44 @@ public class CustomerUnitController {
 	@GetMapping("/customer/{cid}")
 	public ResponseEntity<Object> getCustomer(@PathVariable("cid") int customerId) {
 		CustomerUnit customer = customerservice.viewCustomer(customerId);
-
+		//customer == null
 		if (customer == null) {
-			throw new EmployeeIdNotFoundException(customerId + " CustomerId Not found ");
+			throw new ObjectMissingException("CustomerId Not found ");
 		}
 
-		return new ResponseEntity<>(customer, HttpStatus.OK);
+		return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
 	}
 
 	
 	@PostMapping("/customer")
+	public ResponseEntity<Object> addCustomers(@RequestBody CustomerUnit customers) {
+		CustomerUnit newCustomers = customerservice.addCustomer(customers);
+		if (newCustomers == null)
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(newCustomers.getCustomerId()).toUri();
+		return ResponseEntity.created(location).build();
+	}
+
 	
 
 	@PutMapping("/customer/{cid}")
+	public ResponseEntity<CustomerUnit> updateCustomer(@PathVariable("cid") int id, @RequestBody CustomerUnit customer) {
+	    CustomerUnit cus = customerservice.updateCustomer(id,customer);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
 
 
-
-	@DeleteMapping("/customer/{id}")
-	public ResponseEntity<Object> deletecustomer(@PathVariable("cid") int customerId) {
-
-		customerservice.deleteCustomer(customerId);
-		CustomerUnit customerList = customerservice.viewCustomer(customerId);
-		ResponseEntity<Object> response = ResponseEntity.status(HttpStatus.OK)
-				.body("Deleted Successfully");
-		
-		if (customerList!=null) {
-			response = new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+	@DeleteMapping("/customer/{cid}")
+	public ResponseEntity<Object> deleteCustomers(@PathVariable("cid")int customerid)
+	{
+		CustomerUnit customerPresent=customerservice.viewCustomer(customerid);
+		if(customerPresent==null)
+		{
+			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
 		}
-
-		return response;
+		customerservice.deleteCustomer(customerid);
+		return  ResponseEntity.status(HttpStatus.OK).body("Customer "+customerid+" deleted");
 	}
 	
 

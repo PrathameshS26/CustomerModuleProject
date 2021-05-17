@@ -25,10 +25,13 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 
 		@Override
 		public CustomerUnit viewCustomer(int customerId){
-			Optional<CustomerUnit> cusbyid = customerrepository.findById(customerId);
-			CustomerUnit cus = cusbyid.get();
-			return cus;
+//			Optional<CustomerUnit> cusbyid = customerrepository.findById(customerId);
+//			CustomerUnit cus = cusbyid.get();
+//			return cus;
+			Optional<CustomerUnit> message = customerrepository.findById(customerId);
+			return (message.isPresent()) ? message.get() : null;
 		}
+		
 
 		@Override
 		public CustomerUnit addCustomer(CustomerUnit addcustomer) {
@@ -103,6 +106,7 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 		@Override
 		public void deleteCustomer(int customerid) {
 			customerrepository.deleteById(customerid);
+			
 		}
 		
 		
