@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,9 @@ public class CustomerUnitController {
 
 	@Autowired
 	private CustomerUnitImplementation customerservice;
+	
+	Logger logger = LoggerFactory.getLogger(CustomerUnitController.class);
+
 
 	@GetMapping()
 	public ResponseEntity<List<CustomerUnit>> getCustomers() {
@@ -79,6 +84,42 @@ public class CustomerUnitController {
 	@PutMapping("/customer/{cid}")
 	public ResponseEntity<CustomerUnit> updateCustomer(@PathVariable("cid") int id, @RequestBody CustomerUnit customer) {
 	    CustomerUnit cus = customerservice.updateCustomer(id,customer);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/partnerOrgUnit/{cid}")
+	public ResponseEntity<CustomerUnit> updatePartnerOrg(@PathVariable("cid") int id, @RequestBody PartnerOrgUnit partialUpdate) {
+	    CustomerUnit cus = customerservice.updatePartnerOrg(id,partialUpdate);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/orgUnit/{cid}")
+	public ResponseEntity<CustomerUnit> updateOrg(@PathVariable("cid") int id, @RequestBody OrgUnit partialUpdate) {
+	    CustomerUnit cus = customerservice.updateOrgUnit(id,partialUpdate);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/postal/{cid}")
+	public ResponseEntity<CustomerUnit> updatePostal(@PathVariable("cid") int id, @RequestBody Postal partialUpdate) {
+	    CustomerUnit cus = customerservice.updatePostaldetails(id,partialUpdate);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/city/{cid}")
+	public ResponseEntity<CustomerUnit> updateCity(@PathVariable("cid") int id, @RequestBody City partialUpdate) {
+	    CustomerUnit cus = customerservice.updateCitydetails(id,partialUpdate);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/region/{cid}")
+	public ResponseEntity<CustomerUnit> updateRegion(@PathVariable("cid") int id, @RequestBody Region partialUpdate) {
+	    CustomerUnit cus = customerservice.updateRegiondetails(id,partialUpdate);
+	    return new ResponseEntity<>(cus, HttpStatus.OK);
+	  }
+	
+	@PatchMapping("/country/{cid}")
+	public ResponseEntity<CustomerUnit> updateCountry(@PathVariable("cid") int id, @RequestBody Country partialUpdate) {
+	    CustomerUnit cus = customerservice.updateCountrydetails(id,partialUpdate);
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 

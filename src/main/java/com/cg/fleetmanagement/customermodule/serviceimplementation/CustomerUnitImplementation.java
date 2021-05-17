@@ -6,7 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cg.fleetmanagement.customermodule.model.City;
+import com.cg.fleetmanagement.customermodule.model.Country;
 import com.cg.fleetmanagement.customermodule.model.CustomerUnit;
+import com.cg.fleetmanagement.customermodule.model.OrgUnit;
+import com.cg.fleetmanagement.customermodule.model.PartnerOrgUnit;
+import com.cg.fleetmanagement.customermodule.model.Postal;
+import com.cg.fleetmanagement.customermodule.model.Region;
 import com.cg.fleetmanagement.customermodule.repository.CustomerRepository;
 import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 
@@ -101,6 +107,66 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 			return customerrepository.save(cusbyid);
 
 		}
+		
+		@Override
+		public CustomerUnit updatePartnerOrg(int partnerOrgUnitid,PartnerOrgUnit partnerOrgUnit) {
+			Optional<CustomerUnit> optional = customerrepository.findById(partnerOrgUnitid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPartnerOrgUnit().setSponsorPartnerBusinessManager(partnerOrgUnit.getSponsorPartnerBusinessManager());
+			cusbyid.getPartnerOrgUnit().setResellerEnabled(partnerOrgUnit.isResellerEnabled());
+			cusbyid.getPartnerOrgUnit().setOnCreditHold(partnerOrgUnit.isOnCreditHold());
+			return customerrepository.save(cusbyid);
+			
+		}
+		
+		@Override
+		public CustomerUnit updateOrgUnit(int orgUnitid, OrgUnit updateOrg) {
+			Optional<CustomerUnit> optional = customerrepository.findById(orgUnitid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPartnerOrgUnit().getOrgunit().setOrgName(updateOrg.getOrgName());
+			cusbyid.getPartnerOrgUnit().getOrgunit().setFaxNumber(updateOrg.getFaxNumber());
+			cusbyid.getPartnerOrgUnit().getOrgunit().setPhoneNumber(updateOrg.getPhoneNumber());
+			return customerrepository.save(cusbyid);
+			
+		}
+		
+		@Override
+		 public CustomerUnit updatePostaldetails(int postalid, Postal updatePostal){
+			Optional<CustomerUnit> optional = customerrepository.findById(postalid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPostal().setPostalCodeValue(updatePostal.getPostalCodeValue());
+			return customerrepository.save(cusbyid);
+			
+		}
+
+		@Override
+		 public CustomerUnit updateCitydetails(int cityid, City updateCity){
+			Optional<CustomerUnit> optional = customerrepository.findById(cityid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPostal().getCity().setCitycommlang(updateCity.getCitycommlang());
+			cusbyid.getPostal().getCity().setCityname(updateCity.getCityname());
+			return customerrepository.save(cusbyid);
+			
+		}
+		
+		@Override
+		public CustomerUnit updateRegiondetails(int regionid, Region updateRegion){
+			Optional<CustomerUnit> optional = customerrepository.findById(regionid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPostal().getCity().getRegionId().setRegionname(updateRegion.getRegionname());	
+			return customerrepository.save(cusbyid);
+			
+		}
+		
+		@Override
+		public CustomerUnit updateCountrydetails(int countryid, Country updateCountry){
+			Optional<CustomerUnit> optional = customerrepository.findById(countryid);
+			CustomerUnit cusbyid = optional.get();
+			cusbyid.getPostal().getCity().getRegionId().getCountry().setCountryname(updateCountry.getCountryname());	
+			return customerrepository.save(cusbyid);
+			
+		}
+
 
 
 		@Override
