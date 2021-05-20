@@ -112,6 +112,7 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 		public CustomerUnit updatePartnerOrg(int partnerOrgUnitid,PartnerOrgUnit partnerOrgUnit) {
 			Optional<CustomerUnit> optional = customerrepository.findById(partnerOrgUnitid);
 			CustomerUnit cusbyid = optional.get();
+			System.out.println(cusbyid);
 			cusbyid.getPartnerOrgUnit().setSponsorPartnerBusinessManager(partnerOrgUnit.getSponsorPartnerBusinessManager());
 			cusbyid.getPartnerOrgUnit().setResellerEnabled(partnerOrgUnit.isResellerEnabled());
 			cusbyid.getPartnerOrgUnit().setOnCreditHold(partnerOrgUnit.isOnCreditHold());

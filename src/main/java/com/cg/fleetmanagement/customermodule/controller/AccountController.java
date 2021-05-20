@@ -78,7 +78,7 @@
 //	}
 //}
 
-	@PostMapping("/signIn")
+//	@PostMapping("/signIn")
 //	public ResponseEntity<String> adminSignin(@Valid @RequestBody Admin admin) {
 //		logger.info("Inside adminSignin method");
 //		Admin adminData = service.signIn(admin);

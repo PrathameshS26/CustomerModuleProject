@@ -50,8 +50,13 @@ public class CustomerUnitController {
 		ResponseEntity<List<CustomerUnit>> response = new ResponseEntity<>(customerList, HttpStatus.NOT_FOUND);
 
 		if (!customerList.isEmpty()) {
+			logger.info("Displaying Customers");
 			response = new ResponseEntity<>(customerList, HttpStatus.OK);
 		}
+		else {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 
 		return response;
 	}
@@ -62,8 +67,9 @@ public class CustomerUnitController {
 		CustomerUnit customer = customerservice.viewCustomer(customerId);
 		//customer == null
 		if (customer == null) {
+			logger.error("No customer is found");
 			throw new ObjectMissingException("CustomerId Not found ");
-		}
+			}
 
 		return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
 	}
@@ -72,7 +78,7 @@ public class CustomerUnitController {
 	@PostMapping("/customer")
 	public ResponseEntity<Object> addCustomers(@RequestBody CustomerUnit customers) {
 		CustomerUnit newCustomers = customerservice.addCustomer(customers);
-		if (newCustomers == null)
+		if (newCustomers == null) 
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal server error");
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newCustomers.getCustomerId()).toUri();
@@ -84,42 +90,77 @@ public class CustomerUnitController {
 	@PutMapping("/customer/{cid}")
 	public ResponseEntity<CustomerUnit> updateCustomer(@PathVariable("cid") int id, @RequestBody CustomerUnit customer) {
 	    CustomerUnit cus = customerservice.updateCustomer(id,customer);
+	    logger.info("Customer information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/partnerOrgUnit/{cid}")
 	public ResponseEntity<CustomerUnit> updatePartnerOrg(@PathVariable("cid") int id, @RequestBody PartnerOrgUnit partialUpdate) {
 	    CustomerUnit cus = customerservice.updatePartnerOrg(id,partialUpdate);
+	    logger.info("PartnerOrgUnit information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/orgUnit/{cid}")
 	public ResponseEntity<CustomerUnit> updateOrg(@PathVariable("cid") int id, @RequestBody OrgUnit partialUpdate) {
 	    CustomerUnit cus = customerservice.updateOrgUnit(id,partialUpdate);
+	    logger.info("OrgUnit information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/postal/{cid}")
 	public ResponseEntity<CustomerUnit> updatePostal(@PathVariable("cid") int id, @RequestBody Postal partialUpdate) {
 	    CustomerUnit cus = customerservice.updatePostaldetails(id,partialUpdate);
+	    logger.info("Postal information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/city/{cid}")
 	public ResponseEntity<CustomerUnit> updateCity(@PathVariable("cid") int id, @RequestBody City partialUpdate) {
 	    CustomerUnit cus = customerservice.updateCitydetails(id,partialUpdate);
+	    logger.info("City information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/region/{cid}")
 	public ResponseEntity<CustomerUnit> updateRegion(@PathVariable("cid") int id, @RequestBody Region partialUpdate) {
 	    CustomerUnit cus = customerservice.updateRegiondetails(id,partialUpdate);
+	    logger.info("Region information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
 	@PatchMapping("/country/{cid}")
 	public ResponseEntity<CustomerUnit> updateCountry(@PathVariable("cid") int id, @RequestBody Country partialUpdate) {
 	    CustomerUnit cus = customerservice.updateCountrydetails(id,partialUpdate);
+	    logger.info("Country information getting updated");
+	    if (cus == null) {
+			logger.error("No customer is found");
+			throw new ObjectMissingException("CustomerId Not found ");
+			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 
@@ -129,9 +170,11 @@ public class CustomerUnitController {
 	{
 		CustomerUnit customerPresent=customerservice.viewCustomer(customerid);
 		if(customerPresent==null)
-		{
+		{	
+			logger.error("Entered id is incorrect");
 			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
 		}
+		logger.info("Customer getting deleted");
 		customerservice.deleteCustomer(customerid);
 		return  ResponseEntity.status(HttpStatus.OK).body("Customer "+customerid+" deleted");
 	}

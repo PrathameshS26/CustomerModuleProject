@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "SDP_PARTNERORGUNIT")
 public class PartnerOrgUnit {
@@ -27,7 +29,7 @@ public class PartnerOrgUnit {
 
 	@Column(name = " IsOnCreditHold")
 	private boolean isOnCreditHold;
-
+	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "OrgID")
 	private OrgUnit orgunit;
