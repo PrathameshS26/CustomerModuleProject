@@ -31,9 +31,6 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 
 		@Override
 		public CustomerUnit viewCustomer(int customerId){
-//			Optional<CustomerUnit> cusbyid = customerrepository.findById(customerId);
-//			CustomerUnit cus = cusbyid.get();
-//			return cus;
 			Optional<CustomerUnit> message = customerrepository.findById(customerId);
 			return (message.isPresent()) ? message.get() : null;
 		}
@@ -56,15 +53,9 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 			System.out.println(cusbyid.getPartnerOrgUnit().getOrgunit());
 			cusbyid.setCustomerFirstName(updatecustomer.getCustomerFirstName());
 			cusbyid.setCustomerLastName(updatecustomer.getCustomerLastName());
-//			cusbyid.setCustomerId(updatecustomer.getCustomerId());
-			
-//			cusbyid.getPartnerOrgUnit()
-//					.setPartnerOrgId(updatecustomer.getPartnerOrgUnit().getPartnerOrgId());
+
 			cusbyid.getPartnerOrgUnit()
 					.setSponsorPartnerBusinessManager(updatecustomer.getPartnerOrgUnit().getSponsorPartnerBusinessManager());
-//			cusbyid.getPartnerOrgUnit()
-//					.getOrgunit()
-//					.setOrgId(updatecustomer.getPartnerOrgUnit().getOrgunit().getOrgId());
 			cusbyid.getPartnerOrgUnit()
 					.getOrgunit()
 					.setOrgName(updatecustomer.getPartnerOrgUnit().getOrgunit().getOrgName());
@@ -74,31 +65,19 @@ import com.cg.fleetmanagement.customermodule.service.CustomerUnitService;
 			cusbyid.getPartnerOrgUnit()
 					.getOrgunit()
 					.setPhoneNumber(updatecustomer.getPartnerOrgUnit().getOrgunit().getPhoneNumber());
-//			cusbyid.getPostal().setPostalCodeId(updatecustomer.getPostal().getPostalCodeId());
+			
 			cusbyid.getPostal()
 					.setPostalCodeValue(updatecustomer.getPostal().getPostalCodeValue());
-//			cusbyid.getPostal()
-//					.getCity()
-//					.setCityid(updatecustomer.getPostal().getCity().getCityid());
 			cusbyid.getPostal()
 					.getCity()
 					.setCitycommlang(updatecustomer.getPostal().getCity().getCitycommlang());
 			cusbyid.getPostal()
 					.getCity()
 					.setCityname(updatecustomer.getPostal().getCity().getCityname());
-//			cusbyid.getPostal()
-//					.getCity()
-//					.getRegionId()
-//					.setRegionid(updatecustomer.getPostal().getCity().getRegionId().getRegionid());
 			cusbyid.getPostal()
 					.getCity()
 					.getRegionId()
 					.setRegionname(updatecustomer.getPostal().getCity().getRegionId().getRegionname());
-//			cusbyid.getPostal()
-//					.getCity()
-//					.getRegionId()
-//					.getCountry()
-//					.setCountryid(updatecustomer.getPostal().getCity().getRegionId().getCountry().getCountryid());
 			cusbyid.getPostal()
 					.getCity()
 					.getRegionId()

@@ -18,24 +18,20 @@ public interface CustomerUnitService {
 
 	public CustomerUnit addCustomer(CustomerUnit addcustomer);
 
-	public CustomerUnit updateCustomer(int customerid,CustomerUnit updatecustomer);
-	
-	public CustomerUnit updatePartnerOrg(int partnerOrgUnitid,PartnerOrgUnit updatepartnerOrg);
-	
+	public CustomerUnit updateCustomer(int customerid, CustomerUnit updatecustomer);
+
+	public CustomerUnit updatePartnerOrg(int partnerOrgUnitid, PartnerOrgUnit updatepartnerOrg);
+
 	public CustomerUnit updateOrgUnit(int orgUnitid, OrgUnit updateOrg);
-	
+
 	public CustomerUnit updatePostaldetails(int postalid, Postal updatePostal);
-	
+
 	public CustomerUnit updateCitydetails(int cityid, City updateCity);
-	
+
 	public CustomerUnit updateRegiondetails(int regionid, Region updateRegion);
-	
+
 	public CustomerUnit updateCountrydetails(int countryid, Country updateCountry);
 
 	public void deleteCustomer(int customerid);
-	
-	
-
-	// public CustomerUnit validateCustomer(String userName, String password);
 
 }
