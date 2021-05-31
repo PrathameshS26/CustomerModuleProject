@@ -20,15 +20,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.cg.fleetmanagement.customermodule.exception.CustomerIdNotFoundException;
-import com.cg.fleetmanagement.customermodule.exception.ObjectMissingException;
-import com.cg.fleetmanagement.customermodule.model.City;
-import com.cg.fleetmanagement.customermodule.model.Country;
+//import com.cg.fleetmanagement.customermodule.exception.CustomerIdNotFoundException;
+//import com.cg.fleetmanagement.customermodule.exception.ObjectMissingException;
+//import com.cg.fleetmanagement.customermodule.model.City;
+//import com.cg.fleetmanagement.customermodule.model.Country;
 import com.cg.fleetmanagement.customermodule.model.CustomerUnit;
 import com.cg.fleetmanagement.customermodule.model.OrgUnit;
-import com.cg.fleetmanagement.customermodule.model.PartnerOrgUnit;
+//import com.cg.fleetmanagement.customermodule.model.PartnerOrgUnit;
 import com.cg.fleetmanagement.customermodule.model.Postal;
-import com.cg.fleetmanagement.customermodule.model.Region;
+//import com.cg.fleetmanagement.customermodule.model.Region;
 import com.cg.fleetmanagement.customermodule.repository.CustomerRepository;
 import com.cg.fleetmanagement.customermodule.serviceimplementation.CustomerUnitImplementation;
 
@@ -55,7 +55,7 @@ public class CustomerUnitController {
 		}
 		else {
 			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
+//			throw new ObjectMissingException("CustomerId Not found ");
 			}
 
 		return response;
@@ -68,7 +68,7 @@ public class CustomerUnitController {
 		//customer == null
 		if (customer == null) {
 			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
+//			throw new ObjectMissingException("CustomerId Not found ");
 			}
 
 		return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
@@ -93,77 +93,27 @@ public class CustomerUnitController {
 	    logger.info("Customer information getting updated");
 	    if (cus == null) {
 			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
+//			throw new ObjectMissingException("CustomerId Not found ");
 			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
 	
-	@PatchMapping("/partnerOrgUnit/{cid}")
-	public ResponseEntity<CustomerUnit> updatePartnerOrg(@PathVariable("cid") int id, @RequestBody PartnerOrgUnit partialUpdate) {
-	    CustomerUnit cus = customerservice.updatePartnerOrg(id,partialUpdate);
-	    logger.info("PartnerOrgUnit information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
-	
-	@PatchMapping("/orgUnit/{cid}")
-	public ResponseEntity<CustomerUnit> updateOrg(@PathVariable("cid") int id, @RequestBody OrgUnit partialUpdate) {
-	    CustomerUnit cus = customerservice.updateOrgUnit(id,partialUpdate);
-	    logger.info("OrgUnit information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
-	
-	@PatchMapping("/postal/{cid}")
-	public ResponseEntity<CustomerUnit> updatePostal(@PathVariable("cid") int id, @RequestBody Postal partialUpdate) {
-	    CustomerUnit cus = customerservice.updatePostaldetails(id,partialUpdate);
-	    logger.info("Postal information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
-	
-	@PatchMapping("/city/{cid}")
-	public ResponseEntity<CustomerUnit> updateCity(@PathVariable("cid") int id, @RequestBody City partialUpdate) {
-	    CustomerUnit cus = customerservice.updateCitydetails(id,partialUpdate);
-	    logger.info("City information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
-	
-	@PatchMapping("/region/{cid}")
-	public ResponseEntity<CustomerUnit> updateRegion(@PathVariable("cid") int id, @RequestBody Region partialUpdate) {
-	    CustomerUnit cus = customerservice.updateRegiondetails(id,partialUpdate);
-	    logger.info("Region information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
-	
-	@PatchMapping("/country/{cid}")
-	public ResponseEntity<CustomerUnit> updateCountry(@PathVariable("cid") int id, @RequestBody Country partialUpdate) {
-	    CustomerUnit cus = customerservice.updateCountrydetails(id,partialUpdate);
-	    logger.info("Country information getting updated");
-	    if (cus == null) {
-			logger.error("No customer is found");
-			throw new ObjectMissingException("CustomerId Not found ");
-			}
-	    return new ResponseEntity<>(cus, HttpStatus.OK);
-	  }
 
+//	@PatchMapping("/postal/{cid}")
+//	public ResponseEntity<CustomerUnit> updatePostal(@PathVariable("cid") int id, @RequestBody Postal partialUpdate) {
+//	    CustomerUnit cus = customerservice.updatePostaldetails(id,partialUpdate);
+//	    logger.info("Postal information getting updated");
+//	    if (cus == null) {
+//			logger.error("No customer is found");
+//		throw new ObjectMissingException("CustomerId Not found ");
+//			}
+//	    return new ResponseEntity<>(cus, HttpStatus.OK);
+//	  }
+//	
+	
+	
+	
+	
 
 	@DeleteMapping("/customer/{cid}")
 	public ResponseEntity<Object> deleteCustomers(@PathVariable("cid")int customerid)
@@ -172,7 +122,7 @@ public class CustomerUnitController {
 		if(customerPresent==null)
 		{	
 			logger.error("Entered id is incorrect");
-			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
+//			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
 		}
 		logger.info("Customer getting deleted");
 		customerservice.deleteCustomer(customerid);

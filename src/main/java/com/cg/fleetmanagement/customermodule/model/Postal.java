@@ -11,10 +11,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "SDP_POSTALCODE")
+@Table(name = "SDP_POSTAL")
 public class Postal {
 
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "PostalCodeID")
@@ -23,18 +26,27 @@ public class Postal {
 	@Column(name = "PostalCodeValue",length = 6,nullable = false)
 	private int postalCodeValue;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "CityId")
-	private City city;
+	@JsonIgnore
+	@Column(name = "CountryName",length = 50,nullable = false)
+	private String countryname;
+	
+	@JsonIgnore
+	@Column(name = "StateName",length = 50)
+	private String statename;
+	
+	@JsonIgnore
+	@Column(name = "CityName",length = 50,nullable = false)
+	private String cityname;
 
 	public Postal() {
 	}
 
-	public Postal(Long postalCodeId, int postalCodeValue, City city) {
-		super();
+	public Postal(Long postalCodeId, int postalCodeValue, String countryname, String statename, String cityname) {
 		this.postalCodeId = postalCodeId;
 		this.postalCodeValue = postalCodeValue;
-		this.city=city;
+		this.countryname = countryname;
+		this.statename = statename;
+		this.cityname = cityname;
 	}
 
 	public Long getPostalCodeId() {
@@ -53,18 +65,37 @@ public class Postal {
 		this.postalCodeValue = postalCodeValue;
 	}
 
-	public City getCity() {
-		return city;
+	public String getCountryname() {
+		return countryname;
 	}
 
-	public void setCity(City city) {
-		this.city = city;
+	public void setCountryname(String countryname) {
+		this.countryname = countryname;
+	}
+
+	public String getStatename() {
+		return statename;
+	}
+
+	public void setStatename(String statename) {
+		this.statename = statename;
+	}
+
+	public String getCityname() {
+		return cityname;
+	}
+
+	public void setCityname(String cityname) {
+		this.cityname = cityname;
 	}
 
 	@Override
 	public String toString() {
-		return "Postal [postalCodeId=" + postalCodeId + ", postalCodeValue=" + postalCodeValue + ", city=" + city + "]";
+		return "Postal [postalCodeId=" + postalCodeId + ", postalCodeValue=" + postalCodeValue + ", Countryname="
+				+ countryname + ", Statename=" + statename + ", cityname=" + cityname + "]";
 	}
+	
+	
 
 	
 }
