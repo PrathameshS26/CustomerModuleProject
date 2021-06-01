@@ -19,21 +19,17 @@ public class PostalFeed {
 	
 	
 	@Column(name = "CountryName",length = 50,nullable = false)
-	private String Countryname;
+	private String countryname;
 	
 	@Column(name = "StateName",length = 50)
-	private String Statename;
+	private String statename;
+	
+	@Column(name = "CityName",length = 50)
+	private String cityName;
 
 	public PostalFeed() {
 		
 		// TODO Auto-generated constructor stub
-	}
-
-	public PostalFeed(int postalCode, String countryname, String statename) {
-		super();
-		this.postalCode = postalCode;
-		Countryname = countryname;
-		Statename = statename;
 	}
 
 	public int getPostalCode() {
@@ -45,27 +41,29 @@ public class PostalFeed {
 	}
 
 	public String getCountryname() {
-		return Countryname;
+		return countryname;
 	}
 
 	public void setCountryname(String countryname) {
-		Countryname = countryname;
+		this.countryname = countryname;
 	}
 
 	public String getStatename() {
-		return Statename;
+		return statename;
 	}
 
 	public void setStatename(String statename) {
-		Statename = statename;
+		this.statename = statename;
 	}
 
-	@Override
-	public String toString() {
-		return "PostalFeed [postalCode=" + postalCode + ", Countryname=" + Countryname + ", Statename=" + Statename
-				+ "]";
+	public String getCityName() {
+		return cityName;
 	}
-	
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
 	
 
 	

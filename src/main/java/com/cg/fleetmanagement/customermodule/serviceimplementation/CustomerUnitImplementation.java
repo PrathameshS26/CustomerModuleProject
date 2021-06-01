@@ -41,6 +41,7 @@ public class CustomerUnitImplementation implements CustomerUnitService {
 		PostalFeed postal = pf.get();
 		addcustomer.getPostal().setCountryname(postal.getCountryname());
 		addcustomer.getPostal().setStatename(postal.getStatename());
+		addcustomer.getPostal().setCityname(postal.getCityName());
 
 		CustomerUnit c = customerrepository.save(addcustomer);
 		return c;
@@ -60,12 +61,13 @@ public class CustomerUnitImplementation implements CustomerUnitService {
 		cusbyid.setCustomerLastName(updatecustomer.getCustomerLastName());
 		cusbyid.getOrgUnit().setOrgName(updatecustomer.getOrgUnit().getOrgName());
 		cusbyid.getOrgUnit().setPhoneNumber(updatecustomer.getOrgUnit().getPhoneNumber());
-		cusbyid.getPostal().setCityname(updatecustomer.getPostal().getCityname());
-
+//		cusbyid.getPostal().setCityname(updatecustomer.getPostal().getCityname());
+		
 		updatecustomer.getPostal().setPostalCodeValue(postal.getPostalCode());
 		updatecustomer.getPostal().setStatename(postal.getStatename());
 		updatecustomer.getPostal().setCountryname(postal.getCountryname());
-
+		updatecustomer.getPostal().setCityname(postal.getCityName());
+		
 		return customerrepository.save(cusbyid);
 
 	}

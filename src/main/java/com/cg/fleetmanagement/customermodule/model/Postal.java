@@ -26,15 +26,15 @@ public class Postal {
 	@Column(name = "PostalCodeValue",length = 6,nullable = false)
 	private int postalCodeValue;
 	
-	@JsonIgnore
+	
 	@Column(name = "CountryName",length = 50,nullable = false)
 	private String countryname;
 	
-	@JsonIgnore
+	
 	@Column(name = "StateName",length = 50)
 	private String statename;
 	
-	@JsonIgnore
+	
 	@Column(name = "CityName",length = 50,nullable = false)
 	private String cityname;
 
