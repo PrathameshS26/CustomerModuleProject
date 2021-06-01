@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.cg.fleetmanagement.customermodule.exception.CustomerIdNotFoundException;
+import com.cg.fleetmanagement.customermodule.exception.ObjectMissingException;
 //import com.cg.fleetmanagement.customermodule.exception.CustomerIdNotFoundException;
 //import com.cg.fleetmanagement.customermodule.exception.ObjectMissingException;
 //import com.cg.fleetmanagement.customermodule.model.City;
@@ -55,7 +57,7 @@ public class CustomerUnitController {
 		}
 		else {
 			logger.error("No customer is found");
-//			throw new ObjectMissingException("CustomerId Not found ");
+			throw new ObjectMissingException("CustomerId Not found ");
 			}
 
 		return response;
@@ -68,7 +70,7 @@ public class CustomerUnitController {
 		//customer == null
 		if (customer == null) {
 			logger.error("No customer is found");
-//			throw new ObjectMissingException("CustomerId Not found ");
+		throw new ObjectMissingException("CustomerId Not found ");
 			}
 
 		return new ResponseEntity<>(customer, HttpStatus.ACCEPTED);
@@ -93,7 +95,7 @@ public class CustomerUnitController {
 	    logger.info("Customer information getting updated");
 	    if (cus == null) {
 			logger.error("No customer is found");
-//			throw new ObjectMissingException("CustomerId Not found ");
+			throw new ObjectMissingException("CustomerId Not found ");
 			}
 	    return new ResponseEntity<>(cus, HttpStatus.OK);
 	  }
@@ -122,7 +124,7 @@ public class CustomerUnitController {
 		if(customerPresent==null)
 		{	
 			logger.error("Entered id is incorrect");
-//			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
+			throw new CustomerIdNotFoundException("CustomerId "+customerid+" not found");
 		}
 		logger.info("Customer getting deleted");
 		customerservice.deleteCustomer(customerid);
